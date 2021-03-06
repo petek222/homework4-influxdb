@@ -13,7 +13,7 @@ This is the fourth homework. The deadline is March TBD, 11:59 PM.
 + [Step-1 Create the EC2 Instance](#step-1-create-the-ec2-instance)
 + [Step-2 Install the InfluxDB](#step-2-install-the-influxDB)
 + [Step-3 Configure the InfluxDB](#step-3-configure-the-influxDB)
-+ [Step-4 Loading the influxDB with Nashville dataset](#step4-loading the influxDB with Nashville dataset)
++ [Step-4 Loading the influxDB with Nashville dataset](#step4-loading-the-influxDB-with-Nashville-dataset)
 + [Step-5 Check initial Colab Connection](#step-5-check-initial-colab-connection)
 + [Step-6 Queries - 30 points-](#step-6-queries---30-points-)
 
