@@ -1,7 +1,4 @@
-# homework4-influxdb
-
-
-# Vanderbilt - Big Data 2021 - Homework 8
+# Vanderbilt - Big Data 2021 - Homework 4
 
 **Due Date** -- TBD
 
@@ -20,3 +17,12 @@ Write a query in influxDB to count the number of queries
 ## Step 2 - Count the number of tweets of users who have no friends [20 points]
 
 Write a query in influxDB to count the number of queries
+
+
+
+## Step 3 - Show counts of tweet by Non American user called Jason [20 points]
+
+
+
+
+
