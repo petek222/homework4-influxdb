@@ -214,7 +214,7 @@ Check that everything went fine by trying to authenticate, with the db.auth(user
 Refer to the link if you get stuck: https://medium.com/@matteocontrini/how-to-setup-auth-in-mongodb-3-0-properly-86b60aeef7e8
 
 
-## Step-4 Loading the MongoDB with Lahman database
+## Step-4 Loading the influxDB with Nashville dataset
 
 Download the lahman database to your windows or Mac Host  from http://www.seanlahman.com/files/database/
 Use the lahman_sql_2012 comma delimited version (CSV) files. 
