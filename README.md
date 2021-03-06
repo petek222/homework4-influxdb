@@ -32,15 +32,14 @@ This is the fourth homework. The deadline is March TBD, 11:59 PM.
 
 * In the assignment you will create an EC2 instance and install your own influxdb server. For this you will need to see the following videos
   * [Creating and EC2 Instance](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714850/View)
-  * [Installing MongoDB on the EC2 Instance PDF](https://youtu.be/bxQXbfgoJxo)
-  * It is very important to take authentication seriousl. Change the password that provide you admin access and set it to your own.
+  * [Installing InfluxDB on the EC2 Instance PDF](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714861/View)
+  * It is very important to take authentication seriously. Change the password that provide you admin access and set it to your own.
 
 
 ## We have also created some youtube videos that may help you in addition to the links above if you get stuck
 
-* https://youtu.be/Ev9pLdmV6J4
-* https://youtu.be/DDxIxd2HPzE
-* https://youtu.be/_wpIJBoSYpQ
+* https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714860/View
+
 
 
 
