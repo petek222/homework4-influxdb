@@ -21,6 +21,7 @@ Write a query in influxDB to count the number of queries
 
 
 ## Step 3 - Show counts of tweet by Non American user called Jason [20 points]
+Write a query in influxDB to count the number of queries
 
 
 
