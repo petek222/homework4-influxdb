@@ -1,4 +1,4 @@
-# Vanderbilt - Big Data 2021 - Homework 4
+# Vanderbilt - Big Data 2021 - Homework 4 timeseries database - InfluxDB
 
 This is the fourth homework. The deadline is March TBD, 11:59 PM.
 
@@ -11,11 +11,11 @@ This is the fourth homework. The deadline is March TBD, 11:59 PM.
 # Checklist
 
 + [Step-1 Create the EC2 Instance](#step-1-create-the-ec2-instance)
-+ [Step-2 Install the InfluxDB packages](#step-2-install-the-influxDB-packages)
-+ [Step-3 Enable remote access to the mongoDB server running on EC2](#step-3-enable-remote-access-to-the-mongodb-server-running-on-ec2)
-+ [Step-4 Loading the MongoDB with Lahman database](#step-4-loading-the-mongodb-with-lahman-database)
++ [Step-2 Install the InfluxDB](#step-2-install-the-influxDB)
++ [Step-3 Enable remote access to the influxDB server running on EC2](#step-3-enable-remote-access-to-the-mongodb-server-running-on-ec2)
++ [Step-4 Loading the influxDB with Nashville dataset](#step-4-loading-the-mongodb-with-lahman-database)
 + [Step-5 Check initial Colab Connection](#step-5-check-initial-colab-connection)
-+ [Step-6 Queries - 80 points-](#step-6-queries---80-points-)
++ [Step-6 Queries - 30 points-](#step-6-queries---30-points-)
 
 
 
@@ -107,29 +107,23 @@ Caution: After doing your assignment make sure to shut down the EC2 instance and
 Follow the instructions carefully to remain within **free tier**. That last part is very important.
 
 
-**Note** open the security group to allow incoming connections from anywhere on port 27017. You did this in previous assignment for MYSQL. It will work similarly here.Also see the figure below.
 
 
-![showing the security group configuration](images/incomingsecurityconfiguration.png)
 
-**Note** - you dont need to create a public elastic ip. You can use the hostname given by the connection string -- when you were connecting to the instance for accessing the instance. This will be the host string that you can give for connection -- the test connection notebook.
-
-## Step-2 Install the MongoDb packages
-
-Login to your EC2 then type the commands:
+## Step-2 Install the Influxdb packages
 
 Import the public key used for accessing package management system
-	
-	$wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+
+	$sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+
 
 Create a list file for mongoDB
 	
-	$echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+	$sudo echo "deb https://repos.influxdata.com/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
 
 	$sudo apt-get update
 
-
-	$sudo apt-get install -y mongodb-org
+	$sudo apt install influxdb
 
 Start the mongodb:
 
