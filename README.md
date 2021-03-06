@@ -110,7 +110,7 @@ Follow the instructions carefully to remain within **free tier**. That last part
 
 
 
-## Step-2 Install the Influxdb packages
+## Step-2 Install the Influxdb
 
 Import the public key used for accessing package management system
 
