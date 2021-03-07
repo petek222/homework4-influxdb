@@ -177,8 +177,8 @@ Select the database tweet to use in influxdb
 	> use database tweet
 	
 
-Then execute the InfluxDB_connection_load-tweets.ipynb
-in colab  to load the nashville tweets database into influxDb:
+Then execute the test_connection_and_load_tweets.ipynb
+in colab  to load the nashville tweets database into AWS influxDB:
 
 	
 
