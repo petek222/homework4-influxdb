@@ -194,8 +194,11 @@ Install the chronograph on your linux VM to run queries and visualize data from 
 
 Go to https://portal.influxdata.com/downloads/ to download the chronograph
 
+![](images/portal.png)
 
 Download and unzip the package:
+
+
 
 
 Run the chronograph
