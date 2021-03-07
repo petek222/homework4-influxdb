@@ -184,10 +184,24 @@ of nashville-tweets-2019-01-28
 	f = open("/content/nashville-tweets-2019-01-28",)
 
 
-## Step-5 Check initial Colab Connection
+## Step-5 Check initial Colab Connection and chronograph
 
 Then execute the test_connection_and_load_tweets.ipynb
 in colab  to load the nashville tweets database into AWS influxDB:
+
+
+Install the chronograph on your linux VM to run queries and visualize data from the influxDB.
+
+Go to https://portal.influxdata.com/downloads/ to download the chronograph
+
+
+Download and unzip the package:
+
+
+Run the chronograph
+
+
+Connect to the influxDB and view the data
 
 
 ## Step-6 Queries - 80 points- 
@@ -196,14 +210,14 @@ Implement a function per query in a file called [hw4.ipynb](hw4.ipynb). Record t
 
 The queries are
 
-## Step 1 - Count tweets [10 points]
-Write a query in influxDB to count the number of tweets.
+Count tweets [10 points]
 
-## Step 2 - Count the number of tweets of users who have no friends [10 points]
-Write a query in influxDB for above.
 
-## Step 3 - Show counts of tweet by Non American user called Jason [10 points]
-Write a query in influxDB for above.
+Count the number of tweets of users who have no friends [10 points]
+
+
+Show counts of tweet by Non American user called Jason [10 points]
+
 
 
 ## Step-7 Timing Plots - 20 points
