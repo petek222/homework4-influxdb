@@ -34,11 +34,11 @@ This is the fourth homework. The deadline is March TBD, 11:59 PM.
   * [Creating and EC2 Instance](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714850/View)
   * [Installing InfluxDB on the EC2 Instance PDF](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714861/View)
   * It is very important to take authentication seriously. Change the password that provide you admin access and set it to your own.
-
+  * [Installing InfluxDB on EC2 Instance Video](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714860/View)
 
 ## We have also created some youtube videos that may help you in addition to the links above if you get stuck
 
-* https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714860/View
+* https://www.youtube.com/watch?v=bxQXbfgoJxo
 
 
 
