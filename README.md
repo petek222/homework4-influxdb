@@ -144,7 +144,7 @@ Uncomment the ‘enable = true’ as shown below and save the influxdb.conf file
 	# Determines whether the Flux query endpoint is enabled.
 	# flux-enabled = false
 	
-	
+
 	
 Open the port 8086 in AWS EC2 instance VPC security inbound rules for remote access
 
@@ -176,96 +176,23 @@ Select the database tweet to use in influxdb
 
 	> use database tweet
 	
-
-Then execute the test_connection_and_load_tweets.ipynb
-in colab  to load the nashville tweets database into AWS influxDB:
-
+nashville-tweets-2019-01-28 tweet dataset is in the dataset folder of this assignment
 	
+edit the test_connection_and_load_tweets.ipynb in the below line to point to the correct path
+of nashville-tweets-2019-01-28
 
-
-Download the lahman database to your windows or Mac Host  from http://www.seanlahman.com/files/database/
-Use the lahman_sql_2012 comma delimited version (CSV) files. 
-
-	$mkdir rawfiles
-	$cd rawfiles
-	$wget http://www.seanlahman.com/files/database/lahman2012-csv.zip
-	$unzip lahman2012-csv.zip
-
-**Note** - you might be asked to install unzip - follow prompts
-
-if everything went well - it will look like following
-
-```
-~/rawfiles$ ls 
- AllstarFull.csv      AwardsPlayers.csv         Batting.csv       FieldingOF.csv     Managers.csv       Pitching.csv       Salaries.csv         SeriesPost.csv        TeamsHalf.csv
- Appearances.csv      AwardsShareManagers.csv   BattingPost.csv   FieldingPost.csv   ManagersHalf.csv   PitchingPost.csv   Schools.csv          Teams.csv
- AwardsManagers.csv   AwardsSharePlayers.csv    Fielding.csv      HallOfFame.csv     Master.csv        'readme 2012.txt'   SchoolsPlayers.csv   TeamsFranchises.csv
-```
-
-
-Then import the csv files into mongoDB using the below command.
-Do this for all the .csv files
-
-	$mongoimport -d <dbname> -c <collection_name>t --type csv --file <input.csv> --headerline.
-
-Below are the import commands for all csv files to import into the mongodb - **you need to update the username and password to what you set up -- see the instructions above**
-
-**Using an online "find-and-replace" tool to change the "username" and "yourpassword" fields for all below queries will make this process faster.**
-
-	$mongoimport -d lahman -c AllstarFull --type csv --file AllstarFull.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c AwardsSharePlayers --type csv --file AwardsSharePlayers.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c Appearances --type csv --file Appearances.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c AwardsManagers --type csv --file AwardsManagers.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c AwardsShareManagers --type csv --file AwardsShareManagers.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c AwardsPlayers --type csv --file AwardsPlayers.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c Batting --type csv --file Batting.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$ls 
- 	$mongoimport -d lahman -c Fielding --type csv --file Fielding.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c FieldingOF --type csv --file FieldingOF.csv --headerline --username "ubuntu" --password "yourpassword"
-  	$mongoimport -d lahman -c FieldingPost --type csv --file FieldingPost.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c HallOfFame --type csv --file HallOfFame.csv --headerline --username "ubuntu" --password "yourpassword"
-  	$mongoimport -d lahman -c Managers --type csv --file Managers.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c ManagersHalf --type csv --file ManagersHalf.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c Master --type csv --file Master.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c Pitching --type csv --file Pitching.csv --headerline --username "ubuntu" --password "yourpassword"
-  	$mongoimport -d lahman -c PitchingPost --type csv --file PitchingPost.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c Salaries --type csv --file Salaries.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c Schools --type csv --file Schools.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c SchoolsPlayers --type csv --file SchoolsPlayers.csv --headerline --username "ubuntu" --password "yourpassword"
-  	$mongoimport -d lahman -c SeriesPost --type csv --file SeriesPost.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c Teams --type csv --file Teams.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c TeamsFranchises --type csv --file TeamsFranchises.csv --headerline --username "ubuntu" --password "yourpassword"
- 	$mongoimport -d lahman -c TeamsHalf --type csv --file TeamsHalf.csv --headerline --username "ubuntu" --password "yourpassword"
-
-
-**you can use a cool shell command to import all**
-
-	$for file in `ls *.csv`; do mongoimport -d lahman -c `basename $file .csv` --type csv $file --headerline --username "ubuntu" --password "yourpassword";done
-
+	f = open("/content/nashville-tweets-2019-01-28",)
 
 
 ## Step-5 Check initial Colab Connection
 
-Run the Colab connection script [test-setup.ipynb](test-setup.ipynb) and ensure that you get the connection and the number of tables correctly. Make sure that you update the database name, the username and the password. 
+Then execute the test_connection_and_load_tweets.ipynb
+in colab  to load the nashville tweets database into AWS influxDB:
 
-**Note** the port should be 27017 and the host should be the hostname of your AWS instance.
-
-Remember to shutoff the EC2 instance when you are not using it.
-
-At this point check initial connection from compass as well. During connection choose lahman as the authentication database. And provide the username and password you created for lahman database.
-
- If you opened the ports correctly the connection will work and you can get something like following
-
-
-![](images/compass.png)
-
-![](images/compass2.png)
-
-![](images/compass3.png)
 
 ## Step-6 Queries - 80 points- 
 
-Implement a function per query in a file called [hw3.ipynb](hw3.ipynb). Record the answers there and save it back to your repository. 
+Implement a function per query in a file called [hw4.ipynb](hw4.ipynb). Record the answers there and save it back to your repository. 
 
 The queries are
 
@@ -285,13 +212,10 @@ Read about timeit function call at https://docs.python.org/2/library/timeit.html
 
 Write a function that run all your queries 10 times and produces a box plot per query. Read about https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html
 
-Also look at the weather box plot example in traffic example notebook in this repository
-
-
 
 
 ## Grading Rubrics
-* Queries - 80 points 
+* Queries - 30 points 
 * Timing plots - 20 Points
 
 
