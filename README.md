@@ -198,10 +198,13 @@ Go to https://portal.influxdata.com/downloads/ to download the chronograph
 
 Download and unzip the package:
 
-
-
+	$wget https://dl.influxdata.com/chronograf/releases/chronograf-1.8.10_linux_amd64.tar.gz
+	$tar xvfz chronograf-1.8.10_linux_amd64.tar.gz
 
 Run the chronograph
+
+	$cd chronograf-1.8.10_linux_amd64/usr/bin/
+	$./chronograf
 
 
 Connect to the influxDB and view the data
