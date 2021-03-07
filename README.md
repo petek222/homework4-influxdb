@@ -212,7 +212,7 @@ Connect to the influxDB and view the data
 ![](images/chronograph.png)
 
 
-## Step-6 Queries - 80 points- 
+## Step-6 Queries - 30 points- 
 
 Implement a function per query in a file called [hw4.ipynb](hw4.ipynb). Record the answers there and save it back to your repository. 
 
