@@ -203,6 +203,8 @@ Run the chronograph
 
 Connect to the influxDB and view the data
 
+![](images/chronograph.png)
+
 
 ## Step-6 Queries - 80 points- 
 
@@ -212,12 +214,9 @@ The queries are
 
 Count tweets [10 points]
 
-
 Count the number of tweets of users who have no friends [10 points]
 
-
 Show counts of tweet by Non American user called Jason [10 points]
-
 
 
 ## Step-7 Timing Plots - 20 points
