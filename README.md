@@ -132,89 +132,56 @@ Verify the mongod service
 	
 ## Step-3 Configure the influxDB
 
-Follow the instruction in the below link:
+Edit the /etc/influxdb/influxdb.conf using the any editor, nano is shown below
+	
+	sudo nano /etc/influxdb/influxdb.conf
+	
+Uncomment the ‘enable = true’ as shown below and save the influxdb.conf file
 
-Create the remote users, but first create admin -
+	[http]
+	# Determines whether HTTP endpoint is enabled.
+	enabled = true
+	# Determines whether the Flux query endpoint is enabled.
+	# flux-enabled = false
+	
+	
+	
+Open the port 8086 in AWS EC2 instance VPC security inbound rules for remote access
 
-Enter the mongo shell on EC2
+	refer https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html
+	
+and restart the influxdb 
+	
+	$sudo systemctl restart influxdb
+	
+Type the following command to create user and passwd
 
-	$sudo mongo
+	$curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE USER admin WITH PASSWORD 'type_password_here' WITH ALL PRIVILEGES"
+	
+**Note** - Take security of your database seriously and create a strong password 
 
-Select admin DB
-
-	>use admin
-
-**Change the admin password to something else**
-
-Create the “admin” user (you can call it whatever you want). the exit command is used to close the shell
-
-	> db.createUser({ user: "admin", pwd: "adminpassword", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] })
-	> db.auth("admin", "adminpassword")
-	> exit
-
-
-
-We are now going to enable authentication on the MongoDB instance, by modifying the mongod.conf file. If you’re on Linux:
-
-	$sudo vim  /etc/mongod.conf
-
-**Note:** to enter edit/insert mode in vim, press 'i'. To save/exit, type ':x':
-
-Add these lines at the bottom of the YAML config file:
-
-```
-security:
-    authorization: enabled
-````
-
-This will enable authentication on your database instance. 
-
-**Important -- external access** 
-
-By default MongoDB instance is listening on the local loopback interface only. This means that the DBMS will be accepting connections to the databases only when they come from the host itself.
-
-So, open mongod.conf in edit mode again, as we’re going to check out the net.bindIp option. That option tells the mongod process on which interfaces it should listen.
-
-```
-net:
-    bindIp: 0.0.0.0
-```
-
-With this configuration, MongoDB will be listening on 0.0.0.0 (“all the networks”). It means that mongod will listen on all the interfaces configured on your system. Pay attention that in this way you are likely going to allow everyone on the Internet to access your database (as far as they have the credentials, of course, so pay particular attention to poor passwords).
-
-**Restart**
-
-Now restart the mongod service (Ubuntu syntax) for the changes to take effect.
-	$sudo service mongod restart
-You can check if the service is up with:
-	$sudo service mongod status
-
-To create a external user login to mongo db account such as 'ubuntu'- 
-Now login to mongo shell and select admin db and authenticate
-
-	$sudo mongo
-
-	>use admin
-	>db.auth("admin", "adminpassword")
-
-now create lahman database in mongo
-
-	>use  lahman;
-
-create remote user name - 'ubuntu' and a passowrd who can use lahman db (this is generally a good idea. You restrict access for people)	 
-
-	>db.createUser({ user: "ubuntu", pwd: "yourpassword", roles: [{ role: "dbOwner", db: "lahman" }] })
-
-Check that everything went fine by trying to authenticate, with the db.auth(user, pwd) function.
-
-	>db.auth("ubuntu", "yourpassword")
-  
- **Note** - keep your username and password private. Very important. This is what you will use to connect to the database. 
-
-Refer to the link if you get stuck: https://medium.com/@matteocontrini/how-to-setup-auth-in-mongodb-3-0-properly-86b60aeef7e8
 
 
 ## Step-4 Loading the influxDB with Nashville dataset
+
+Type influx at the shell to enter the influx db shell
+
+	$influx -username 'admin' -password 'your_password_here'
+	
+Create a tweet database at influxdb prompt
+
+	> create database tweet
+	
+Select the database tweet to use in influxdb
+
+	> use database tweet
+	
+
+Then execute the InfluxDB_connection_load-tweets.ipynb
+in colab  to load the nashville tweets database into influxDb:
+
+	
+
 
 Download the lahman database to your windows or Mac Host  from http://www.seanlahman.com/files/database/
 Use the lahman_sql_2012 comma delimited version (CSV) files. 
