@@ -1,23 +1,22 @@
 # Vanderbilt - Big Data 2021 - Homework 4 timeseries database - InfluxDB
 
-This is the fourth homework. The deadline is March TBD, 11:59 PM.
+This is the fourth homework. The deadline is March 16, 11:59 PM.
 
 # Goals of the exercise. 
 
-* Learn to configure as AWS EC2 instance and install a timeseries DB used in Bigdata systems taking InfluxDB as an example.
-* Learn to configure and load InfluxDB with the Nashville tweet Data. 
-* Write queries.
+* Learn to install and configure time-series database on AWS EC2 instance;
+* Learn to monitor time serial data flow using Chronograf;
+* Learn to load data from CSV file to influxdb database;
+* Learn to perform some basic analysis for multivariate time series.
 
 # Checklist
 
 + [Step-1 Create the EC2 Instance](#step-1-create-the-ec2-instance)
 + [Step-2 Install the InfluxDB](#step-2-install-the-influxDB)
 + [Step-3 Configure the InfluxDB](#step-3-configure-the-influxDB)
-+ [Step-4 Loading the influxDB with Nashville dataset](#step4-loading-the-influxDB-with-Nashville-dataset)
-+ [Step-5 Check initial Colab Connection](#step-5-check-initial-colab-connection)
-+ [Step-6 Queries - 30 points-](#step-6-queries---30-points-)
-
-
++ [Step-4 Create the Energy Database](##step-4-create-the-energy-database)
++ [Step-5 Install Chronograf for Data Visualization](##step-5-install-chronograf-for-data-visualization)
++ [Step-6 Load Dataset and Queries-100 points](##step-6-load-dataset-and-queries-100-points)
 
 
 # Background Material
@@ -25,13 +24,13 @@ This is the fourth homework. The deadline is March TBD, 11:59 PM.
 ## Prior Reading
 
 * Read all the reading materials given by Prof. Dubey
-* Complete the tutorials in week  content.
+* Complete the tutorials in week content.
 * Additional links: https://docs.influxdata.com/influxdb/v1.8/introduction/get-started/
 
 ## Useful Instructions -- Please watch. Most of your problems will be answered here.
 
 * In the assignment you will create an EC2 instance and install your own influxdb server. For this you will need to see the following videos
-  * [Creating and EC2 Instance](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714850/View)
+  * [Creating and EC2 Instance](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714850/View). Add ports 8086 and 8888 in the inbound rules of the security group, rather than 27017.
   * [Installing InfluxDB on the EC2 Instance PDF](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714861/View)
   * It is very important to take authentication seriously. Change the password that provide you admin access and set it to your own.
   * [Installing InfluxDB on EC2 Instance Video](https://brightspace.vanderbilt.edu/d2l/le/content/269528/viewContent/1714860/View)
@@ -40,10 +39,7 @@ This is the fourth homework. The deadline is March TBD, 11:59 PM.
 
 * https://www.youtube.com/watch?v=bxQXbfgoJxo
 
-
-
-
-## Remember to update the links of all notebooks
+## Remember to update the Colab badge links of all notebooks
 
 * You did this in previous assignments - see [AcceptingaGithubassignment.pdf](AcceptingaGithubassignment.pdf)
 
@@ -53,6 +49,10 @@ This is the fourth homework. The deadline is March TBD, 11:59 PM.
 To access AWS go to https://aws.amazon.com/education/awseducate/ and use the account you created when you were invited to the class. Ensure that you can access this account and can land into an AWS console as shown below.
 
 ## Github
+
+```
+git clone https://github.com/vu-topics-in-big-data-2021/homework-4-<GITHUB USERNAME>.git 
+```
 
 To push code to your repo use the git commit and push commands. But first set some settings:
 
@@ -69,22 +69,21 @@ If you would like to use SSH keys on Github, follow the instructions at:
 
 	https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/0
 
+I may push updates to this homework assignment in the future. To setup an upstream repo, do the following:
 
-## Adding Master of original repository
-
-	git clone https://github.com/vu-topics-in-big-data-2021/homework-3-<GITHUB USERNAME>.git I may push updates to this homework assignment in the future. To setup an upstream repo, do the following:
-
-	git remote add upstream https://github.com/vu-topics-in-big-data-2021/homework-3-mongodb.git  
-	
-	To pull updates do the following: git fetch upstream git merge upstream/master
-	
-* This will create a new branch: upstream/main
 ```
-	git fetch upstream
+git remote add upstream https://github.com/vu-topics-in-big-data-2021/homework-4.git
 ```
-* Then merge your current brach(origin/main) with upstream/main
+
+To pull updates do the following: git fetch upstream git merge upstream/master
+	
+This will create a new branch: upstream/main
+```
+git fetch upstream
+```
+Then merge your current brach(origin/main) with upstream/main
 ```	
-	git merge upstream/main --allow-unrelated-histories
+git merge upstream/main --allow-unrelated-histories
 ```
 
 You will need to resolve conflicts if they occur. If the conflicts are in notebooks. Open them in visual code and manually move the changes.
@@ -93,15 +92,11 @@ You will need to resolve conflicts if they occur. If the conflicts are in notebo
 
 ## Dataset Description
 
-The dataset is Nashville tweet dataset.
+We'll use an [appliances energy prediction dataset](https://vanderbilt365.sharepoint.com/sites/TopicsInBigData/Shared%20Documents/General/Datasets/Nashville%20Tweets%20Dataset/nashville-tweets-2019-02-03). Please read the dataset description [here](https://archive.ics.uci.edu/ml/datasets/Appliances+energy+prediction#). 
  
 ## Step-1 Create the EC2 Instance
 
-First install the AWS EC2 using the AWS link below (use AWS free educate account login)
-
-Note : In Step 3 :-Configure your instance . Choose Ubuntu server instead of Amazon linux.
-Note : Dont do Step 5 as it will terminate your AWS EC2 instance
-https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/?trk=gs_card&e=gs&p=gsrc
+First install the AWS EC2 instance through AWS console (use AWS free educate account login), please open ports **8086**(influxdb) and **8888**(chronograph) for all external connections when configuring inbound rules of the security group.
 
 Caution: After doing your assignment make sure to shut down the EC2 instance and logout. This is necessary to avoid unnecessary charging to your AWS account.
 Follow the instructions carefully to remain within **free tier**. That last part is very important.
@@ -111,24 +106,22 @@ Follow the instructions carefully to remain within **free tier**. That last part
 
 Import the public key used for accessing package management system
 
-	$sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+	sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
 
 
 Create a list file for influxdb
 	
-	$sudo echo "deb https://repos.influxdata.com/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+	sudo echo "deb https://repos.influxdata.com/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+	sudo apt-get update
+	sudo apt install -y influxdb
 
-	$sudo apt-get update
-
-	$sudo apt install influxdb
-
-Start the mongodb:
-
-	$sudo service mongod start
-
-Verify the mongod service
+Start and enable the service to start on boot up:
 	
-	$sudo service mongod status
+	sudo systemctl enable --now influxdb
+
+Verify the influxdb service
+	
+	sudo systemctl status influxdb
 	
 ## Step-3 Configure the influxDB
 
@@ -136,106 +129,79 @@ Edit the /etc/influxdb/influxdb.conf using the any editor, nano is shown below
 	
 	sudo nano /etc/influxdb/influxdb.conf
 	
-Uncomment the ‘enable = true’ as shown below and save the influxdb.conf file
+Modify the http section in influxdb.conf file
 
-	[http]
-	# Determines whether HTTP endpoint is enabled.
-	enabled = true
-	# Determines whether the Flux query endpoint is enabled.
-	# flux-enabled = false
-	
+```YAML
+[http]
+  # Determines whether HTTP endpoint is enabled.
+  enabled = true
 
-	
-Open the port 8086 in AWS EC2 instance VPC security inbound rules for remote access
+  # Determines whether the Flux query endpoint is enabled.
+  # flux-enabled = false
 
-	refer https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html
+  # Determines whether the Flux query logging is enabled.
+  # flux-log-enabled = false
+
+  # The bind address used by the HTTP service.
+  bind-address = ":8086"
+
+  # Determines whether user authentication is enabled over HTTP/HTTPS.
+  auth-enabled = true
+```
+
+Open the port 8086 in AWS EC2 instance VPC security inbound rules for remote access: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html
 	
-and restart the influxdb 
+Restart the influxdb 
 	
-	$sudo systemctl restart influxdb
+	sudo systemctl restart influxdb
 	
 Type the following command to create user and passwd
 
-	$curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE USER admin WITH PASSWORD 'type_password_here' WITH ALL PRIVILEGES"
-	
+	curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE USER admin WITH PASSWORD 'type_password_here' WITH ALL PRIVILEGES"
+
+Replace:
+
+- username with your own username
+- strong password with your own password (note that the password requires single quotes)
+
 **Note** - Take security of your database seriously and create a strong password 
 
-
-
-## Step-4 Loading the influxDB with Nashville dataset
+## Step-4 Create the Energy Database
 
 Type influx at the shell to enter the influx db shell
 
-	$influx -username 'admin' -password 'your_password_here'
+	influx -username 'admin' -password 'your_password_here'
 	
-Create a tweet database at influxdb prompt
+Create an energy database at influxdb prompt
 
-	> create database tweet
+	> create database energy
 	
-Select the database tweet to use in influxdb
+Select the database energy to use in influxdb
 
-	> use database tweet
-	
-nashville-tweets-2019-01-28 tweet dataset is in the dataset folder of this assignment
-	
-edit the test_connection_and_load_tweets.ipynb in the below line to point to the correct path
-of nashville-tweets-2019-01-28
+	> use energy
 
-	f = open("/content/nashville-tweets-2019-01-28",)
+## Step-5  Install Chronograf for Data Visualization
 
+Download and install Chronograph:
 
-## Step-5 Check initial Colab Connection and chronograph
+	wget https://dl.influxdata.com/chronograf/releases/chronograf_1.8.9.1_amd64.deb --no-check-certificate
+	sudo dpkg -i chronograf_1.8.9.1_amd64.deb
 
-Then execute the test_connection_and_load_tweets.ipynb
-in colab  to load the nashville tweets database into AWS influxDB:
+Connect to the influxDB and view the data.
 
+For example, the below shows the curves from T1 to T9.
 
-Install the chronograph on your linux VM to run queries and visualize data from the influxDB.
-
-Go to https://portal.influxdata.com/downloads/ to download the chronograph
-
-![](images/portal.png)
-
-Download and unzip the package:
-
-	$wget https://dl.influxdata.com/chronograf/releases/chronograf-1.8.10_linux_amd64.tar.gz
-	$tar xvfz chronograf-1.8.10_linux_amd64.tar.gz
-
-Run the chronograph
-
-	$cd chronograf-1.8.10_linux_amd64/usr/bin/
-	$./chronograf
+![](images/chronograf.png)
 
 
-Connect to the influxDB and view the data
-
-![](images/chronograph.png)
-
-
-## Step-6 Queries - 30 points- 
+## Step-6 Load Dataset and Queries-100 points
 
 Implement a function per query in a file called [hw4.ipynb](hw4.ipynb). Record the answers there and save it back to your repository. 
 
-The queries are
-
-Count tweets [10 points]
-
-Count the number of tweets of users who have no friends [10 points]
-
-Show counts of tweet by Non American user called Jason [10 points]
-
-
-## Step-7 Timing Plots - 20 points
-
-Read about timeit function call at https://docs.python.org/2/library/timeit.html
-
-Write a function that run all your queries 10 times and produces a box plot per query. Read about https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html
-
-
-
 ## Grading Rubrics
-* Queries - 30 points 
-* Timing plots - 20 Points
+* **10** points for loading data from CSV to InfluxDB;
+* **80** points for all queries;
+* **10** points for comments,explanation and clarity.
 
 
 
