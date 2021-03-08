@@ -96,7 +96,7 @@ We'll use an [appliances energy prediction dataset](https://vanderbilt365.sharep
  
 ## Step-1 Create the EC2 Instance
 
-First install the AWS EC2 instance through AWS console (use AWS free educate account login), please open ports **8086**(influxdb) and **8888**(chronograph) for all external connections when configuring inbound rules of the security group.
+First install the AWS EC2 instance through AWS console (use AWS free educate account login), please open ports **8086**(influxdb) and **8888**(chronograf) for all external connections when configuring inbound rules of the security group.
 
 Caution: After doing your assignment make sure to shut down the EC2 instance and logout. This is necessary to avoid unnecessary charging to your AWS account.
 Follow the instructions carefully to remain within **free tier**. That last part is very important.
@@ -182,7 +182,7 @@ Select the database energy to use in influxdb
 
 ## Step-5  Install Chronograf for Data Visualization
 
-Download and install Chronograph:
+Download and install Chronograf:
 
 	wget https://dl.influxdata.com/chronograf/releases/chronograf_1.8.9.1_amd64.deb --no-check-certificate
 	sudo dpkg -i chronograf_1.8.9.1_amd64.deb
