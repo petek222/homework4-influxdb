@@ -182,12 +182,12 @@ Select the database energy to use in influxdb
 
 ## Step-5  Install Chronograf for Data Visualization
 
-Download and install Chronograf on ec2 instance:
+Download and install Chronograf on your ec2 instance:
 
 	wget https://dl.influxdata.com/chronograf/releases/chronograf_1.8.9.1_amd64.deb --no-check-certificate
 	sudo dpkg -i chronograf_1.8.9.1_amd64.deb
 
-Connect to the influxDB and view the data.
+Connect to the influxDB and view the data on a browser. Point to the ip address of the ec2 instance and the port used for chronograph 8888. Refer to [this post on flux site](https://docs.influxdata.com/chronograf/v1.8/introduction/installation/#connect-chronograf-to-your-influxdb-instance-or-influxdb-enterprise-cluster) 
 
 For example, the below shows the curves from T1 to T9.
 
