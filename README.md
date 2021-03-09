@@ -26,6 +26,7 @@ This is the fourth homework. The deadline is March 16, 11:59 PM.
 * Read all the reading materials given by Prof. Dubey
 * Complete the tutorials in week content.
 * Additional links: https://docs.influxdata.com/influxdb/v1.8/introduction/get-started/
+* Review information on chronograph here : https://docs.influxdata.com/chronograf/v1.8/
 
 ## Useful Instructions -- Please watch. Most of your problems will be answered here.
 
