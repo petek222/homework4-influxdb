@@ -96,7 +96,7 @@ We'll use an [appliances energy prediction dataset](https://vanderbilt365.sharep
  
 ## Step-1 Create the EC2 Instance
 
-First install the AWS EC2 instance through AWS console (use AWS free educate account login), please open ports **8086**(influxdb) and **8888**(chronograph) for all external connections when configuring inbound rules of the security group.
+First install the EC2 instance through AWS console (use AWS free educate account login). Please choose ubuntu 20.04 as machine image, and t2.micro as instance type. Note open the security group to allow incoming connections from anywhere on ports **8086**(influxdb) and **8888**(chronograf). You did this in previous assignment for MYSQL and MongoDB. It will work similarly here. Please watch this [video](https://vanderbilt365.sharepoint.com/sites/TopicsInBigData/Shared%20Documents/General/Instructions/about%20aws%20compute%20instances/Launch%20an%20Amazon%20EC2%20Instance.mp4) for step-by-step instructions.
 
 Caution: After doing your assignment make sure to shut down the EC2 instance and logout. This is necessary to avoid unnecessary charging to your AWS account.
 Follow the instructions carefully to remain within **free tier**. That last part is very important.
@@ -182,7 +182,7 @@ Select the database energy to use in influxdb
 
 ## Step-5  Install Chronograf for Data Visualization
 
-Download and install Chronograph:
+Download and install Chronograf on ec2 instance:
 
 	wget https://dl.influxdata.com/chronograf/releases/chronograf_1.8.9.1_amd64.deb --no-check-certificate
 	sudo dpkg -i chronograf_1.8.9.1_amd64.deb
@@ -194,36 +194,11 @@ For example, the below shows the curves from T1 to T9.
 ![](images/chronograf.png)
 
 
-## Step-6 Load Dataset and Queries-100 points
+## Step-6 Load Dataset and Queries-80 points
 
 Implement a function per query in a file called [hw4.ipynb](hw4.ipynb). Record the answers there and save it back to your repository. 
 
 ## Grading Rubrics
 * **10** points for loading data from CSV to InfluxDB;
-* **80** points for all queries;
+* **60** points for all queries;
 * **10** points for comments,explanation and clarity.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
