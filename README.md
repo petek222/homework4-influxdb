@@ -27,6 +27,7 @@ This is the fourth homework. The deadline is March 16, 11:59 PM.
 * Complete the tutorials in week content.
 * Additional links: https://docs.influxdata.com/influxdb/v1.8/introduction/get-started/
 * Review information on chronograph here : https://docs.influxdata.com/chronograf/v1.8/
+* You will be using plotly to make some timeseries charts in the python notebook. A sample chart has been provided in the notebook. Refer to https://plotly.com/python/basic-charts/ for the API.
 
 ## Useful Instructions -- Please watch. Most of your problems will be answered here.
 
