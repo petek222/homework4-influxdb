@@ -15,7 +15,7 @@ This is the fourth homework. The deadline is March 16, 11:59 PM.
 + [Step-2 Install the InfluxDB](#step-2-install-the-influxDB)
 + [Step-3 Configure the InfluxDB](#step-3-configure-the-influxDB)
 + [Step-4 Create the Energy Database](#step-4-create-the-energy-database)
-+ [Step-5 Install Chronograf for Data Visualization](#step-5-install-chronograf-for-data-visualization)
++ [Step-5 Install Chronograf for Data Visualization](#step-5--install-chronograf-for-data-visualization)
 + [Step-6 Load Dataset and Queries-80 points](#step-6-load-dataset-and-queries-80-points)
 
 
