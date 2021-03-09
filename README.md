@@ -168,7 +168,7 @@ Replace:
 
 ## Step-4 Create the Energy Database
 
-Type influx at the shell to enter the influx db shell
+Type influx at the shell (after connecting to EC2 instance over ssh) to enter the influx db shell
 
 	influx -username 'admin' -password 'your_password_here'
 	
