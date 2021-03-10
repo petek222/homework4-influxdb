@@ -16,7 +16,7 @@ This is the fourth homework. The deadline is March 16, 11:59 PM.
 + [Step-3 Configure the InfluxDB](#step-3-configure-the-influxDB)
 + [Step-4 Create the Energy Database](#step-4-create-the-energy-database)
 + [Step-5 Install Chronograf for Data Visualization](#step-5--install-chronograf-for-data-visualization)
-+ [Step-6 Load Dataset and Queries-80 points](#step-6-load-dataset-and-queries-80-points)
++ [Step-6 Load Dataset and Queries-80 points](#step-6-load-dataset-and-queries-90-points)
 
 
 # Background Material
@@ -196,11 +196,11 @@ For example, the below shows the curves from T1 to T9.
 ![](images/chronograf.png)
 
 
-## Step-6 Load Dataset and Queries-80 points
+## Step-6 Load Dataset and Queries-90 points
 
 The database will be populated as part of the homework notebook load function. Then, please implement a function per query in a file called [hw4.ipynb](hw4.ipynb). Record the answers there and save it back to your repository. For some queries, you need to plot query results. You can use any python library, such as matplotlib or plotly, to plot required figures. We show an example of plotting time-series data using plotly in the [hw4.ipynb](hw4.ipynb) notebook.
 
 ## Grading Rubrics
-* **10** points for loading data from CSV to InfluxDB;
-* **60** points for all queries;
+* **15** points for loading data from CSV to InfluxDB;
+* **65** points for all queries;
 * **10** points for comments,explanation and clarity.
