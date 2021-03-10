@@ -94,7 +94,7 @@ You will need to resolve conflicts if they occur. If the conflicts are in notebo
 
 ## Dataset Description
 
-We'll use an [appliances energy prediction dataset](https://vanderbilt365.sharepoint.com/sites/TopicsInBigData/_layouts/15/Doc.aspx?OR=teams&action=edit&sourcedoc={C8BE8993-F36C-4A20-8C53-03261988F1CC}). Please read the dataset description [here](https://archive.ics.uci.edu/ml/datasets/Appliances+energy+prediction#). 
+We'll use an [appliances energy prediction dataset](https://github.com/vu-topics-in-big-data-2021/homework4-influxdb/blob/main/data/energydata_complete.csv.zip). Please download it read the dataset description [here](https://archive.ics.uci.edu/ml/datasets/Appliances+energy+prediction#). 
  
 ## Step-1 Create the EC2 Instance
 
